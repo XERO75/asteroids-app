@@ -1,0 +1,8 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import url('./style/font.scss');
+
+* {
+  font-family: 'Lato';
+}

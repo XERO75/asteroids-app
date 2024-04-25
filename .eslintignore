@@ -1,3 +1,5 @@
 node_modules/
 *.md
 pnpm-lock.yaml
+assets/
+src/**/*.scss

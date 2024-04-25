@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'iconfont'; /* Project id 4524482 */
+  src:
+    url('iconfont.woff2?t=1714041458203') format('woff2'),
+    url('iconfont.woff?t=1714041458203') format('woff'),
+    url('iconfont.ttf?t=1714041458203') format('truetype');
+}
+
+.iconfont {
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-logo:before {
+  content: '\e606';
+}
+
+.icon-delete:before {
+  content: '\e607';
+}
+
+.icon-loader:before {
+  content: '\e600';
+}
+
+.icon-asteroids:before {
+  content: '\e601';
+}
+
+.icon-add:before {
+  content: '\e602';
+}
+
+.icon-planets:before {
+  content: '\e603';
+}
+
+.icon-livemap:before {
+  content: '\e604';
+}
+
+.icon-miners:before {
+  content: '\e605';
+}
