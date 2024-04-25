@@ -20,7 +20,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "lint": "eslint ./ --ext .ts,.tsx,.js,.json --max-warnings=0"
+    "lint": "eslint ./ --ext .ts,.tsx,.js,.json --max-warnings=0",
+    "format": "prettier --config .prettierrc '.' --write",
+    "format-watch": "onchange -d 1000 '**/*' -- prettier --config .prettierrc --write {{changed}}"
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +45,10 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.6.0",
     "@typescript-eslint/parser": "^6.6.0",
-    "eslint": "^8.48.0"
+    "eslint": "^8.48.0",
+    "onchange": "^7.1.0",
+    "prettier": "^3.0.3",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
   }
 }

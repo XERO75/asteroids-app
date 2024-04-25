@@ -4,7 +4,19 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/eslint-recommended"
+    "plugin:@typescript-eslint/eslint-recommended",
+    "prettier"
   ],
-  "plugins": ["@typescript-eslint"]
+  "plugins": [
+    "@typescript-eslint",
+    "prettier"
+  ],
+
+  "rules": {
+    "prettier/prettier": "error",
+    // Turn off these two ESLint core rules, which are problematic when used with the prettier plugin, see the
+    // https://github.com/prettier/eslint-plugin-prettier/blob/master/README.md#arrow-body-style-and-prefer-arrow-callback-issue
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off"
+  }
 }
