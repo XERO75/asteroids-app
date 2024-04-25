@@ -1,27 +1,76 @@
 # Asteroids Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React app created with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+```bash
+pnpm install
+```
 
-### `npm start`
+The `prepare` script will automatically run after installation, it uses `husky` to add git hooks, the hook scripts are under `.husky` directory.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- pre-commit: run lintstaged scripts
+- commit-msg: add commit lint
 
-### `npm test`
+## Develop
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Environment Configuration
 
-### `npm run build`
+TODO
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Scripts
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Starting a dev server
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+pnpm run start
+```
+
+#### Local Build
+
+```bash
+pnpm run build
+```
+
+### Github Actions
+
+TODO
+
+## Code Conventions
+
+### Javascript
+
+- Generally follows the Airbnb JavaScript Style Guide. See: https://juejin.cn/post/6844903620648026120
+- Naming conventions prefer camelCase (propertyName).
+- Type names use PascalCase (MediaObjectType).
+- Prefer using ES6 syntax.
+- Use let and const instead of var.
+- Avoid using export default.
+- Use literal syntax for object creation.
+- For exported functions, use function declarations export function fnName() {}, not function expressions export const fnName = () => {}.
+- For naming static constants (strings, numbers, RegExp, object literals, etc.), use UPPER_CASED_NAMING.
+
+### SCSS
+
+- Style naming follows the BEM convention:
+
+  1.  (-) Hyphen: Used only as a hyphen to connect multi-word blocks or elements.
+  2.  (\_\_) Double underscore: Used to connect a block and its child elements.
+  3.  (\_) Single underscore: Used to describe a state of a block or an element within a block.
+
+- Example:
+
+```css
+.block {
+}
+
+.block__element {
+}
+
+.block--modifier {
+}
+```
+
+- Suggested order of properties: Flex properties --> Layout and positioning properties --> Self properties --> Text properties --> Other properties.
+- The outermost tag of a component should not have margins by default; margins should be defined by the page/component that includes it.
