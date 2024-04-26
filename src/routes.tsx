@@ -1,12 +1,12 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import AsteroidsPage from './pages/AsteroidsPage';
 import Layout from './pages/Layout/Layout';
-import MinersPage from './pages/MinersPage';
+import MinersPage from './pages/MinersPage/MinersPage';
 import NoMatch from './pages/NoMatch';
 import PlanetsPage from './pages/PlanetsPage';
 
-enum RoutePaths {
+export enum RoutePaths {
   Home = '/',
   Miners = '/miners',
   Asteroids = '/asteroids',
@@ -15,7 +15,7 @@ enum RoutePaths {
 }
 
 interface RouteConfig {
-  path: RoutePaths;
+  path: string; // 修改为string类型
   element: React.ReactElement;
   children?: RouteConfig[];
 }
@@ -29,6 +29,7 @@ const routeConfigs: RouteConfig[] = [
       { path: RoutePaths.Asteroids, element: <AsteroidsPage /> },
       { path: RoutePaths.Planets, element: <PlanetsPage /> },
       { path: RoutePaths.NotFound, element: <NoMatch /> },
+      { path: '/', element: <Navigate replace to="/miners" /> },
     ],
   },
 ];

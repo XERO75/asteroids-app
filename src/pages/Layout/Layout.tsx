@@ -7,7 +7,7 @@ const Layout: React.FC = () => {
     <>
       <Header />
       <Tabs />
-      <hr className="divider" />
+      <div className="border-b border-gray-light" />
       <Outlet />
     </>
   );

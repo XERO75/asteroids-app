@@ -4,7 +4,11 @@ export default {
   theme: {
     colors: {
       white: '#fff',
-      gray: '#9499C3',
+      gray: {
+        light: '#9499C3',
+        DEFAULT: '#9499C3',
+        dark: '#1A1B2F',
+      },
       red: '#EB5757',
       green: {
         light: '#38D9A9',
