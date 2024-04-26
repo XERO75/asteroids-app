@@ -1,18 +1,19 @@
 import React from 'react';
 import './table.scss';
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type RowData = Record<string, any>;
 
-interface ITableProps {
-  headers: string[];
-  showHeaders: string[];
-  data: RowData[];
-  renderCell: (item: RowData, columnKey: string) => React.ReactNode;
+// 使用泛型 T 来定义数据行的类型
+interface ITableProps<T> {
+  headers: string[]; // 列头标识符数组
+  showHeaders: string[]; // 显示给用户的列头数组
+  data: T[]; // 数据数组，每一项都是类型 T
+  renderCell: (item: T, columnKey: string) => React.ReactNode; // 渲染单元格的函数，接受数据项和列标识符
 }
 
-const Table: React.FC<ITableProps> = ({ headers, showHeaders, data, renderCell }) => {
+// 将 Table 组件也定义为泛型组件
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Table = <T extends Record<string, any>>({ headers, showHeaders, data, renderCell }: ITableProps<T>) => {
   return (
-    <div className="w-4/6">
+    <div className="max-h-[500px] overflow-y-auto">
       <table className="w-full">
         <thead>
           <tr>

@@ -10,3 +10,12 @@ export const getMinersList = async () => {
     console.error(error);
   }
 };
+
+export const minerHistory = async (minerID: string) => {
+  try {
+    const res = await requestAPI(`/history?minerId=${minerID}`);
+    return res;
+  } catch (error) {
+    console.error(error);
+  }
+};
