@@ -9,13 +9,13 @@ A React app created with [Create React App](https://github.com/facebook/create-r
 - [x] display a list according to the design
 - [x] connection to the websocket and live updating of the list
 - [x] adding a menu to switch between pages
-- [] adding an asteroid page list based on the result of the GET /asteroids
-- [] adding a button "Create a miner" to be displayed on a miner whenever it got sufficient ressources
-- [] adding a form to create a miner and send the result as a PUSH /miner + Implementation of a form validation
+- [ ] adding an asteroid page list based on the result of the GET /asteroids
+- [ ] adding a button "Create a miner" to be displayed on a miner whenever it got sufficient ressources
+- [ ] adding a form to create a miner and send the result as a PUSH /miner + Implementation of a form validation
 
 ## Installation
 
-make sure you have [pnpm](https://pnpm.io/) installed, and node.js v18.16.0 or higher on your machine.
+make sure you have [pnpm](https://pnpm.io/) installed, and node.js v18.16.0 or higher on
 
 ```bash
 pnpm install
