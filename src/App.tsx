@@ -1,10 +1,11 @@
-import './App.css';
-function App() {
+import React from 'react';
+import AppRoutes from './routes';
+const App: React.FC = () => {
   return (
-    <div className="flex items-center justify-center bg-dark min-h-screen">
-      <h1 className="text-3xl font-bold underline text-green">hello wolrd</h1>
+    <div className="bg-dark min-h-screen text-white">
+      <AppRoutes />
     </div>
   );
-}
+};
 
 export default App;

@@ -6,7 +6,11 @@ export default {
       white: '#fff',
       gray: '#9499C3',
       red: '#EB5757',
-      green: '#00CF67',
+      green: {
+        light: '#38D9A9',
+        DEFAULT: '#00CF67',
+        dark: '#00CF67',
+      },
       dark: '#1A1B2F',
     },
     extend: {},
