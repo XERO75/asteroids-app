@@ -12,6 +12,7 @@ A React app created with [Create React App](https://github.com/facebook/create-r
 - [ ] adding an asteroid page list based on the result of the GET /asteroids
 - [ ] adding a button "Create a miner" to be displayed on a miner whenever it got sufficient ressources
 - [ ] adding a form to create a miner and send the result as a PUSH /miner + Implementation of a form validation
+- [ ] add a live rendering of the planets, miners and asteroids
 
 ## Installation
 
@@ -44,6 +45,12 @@ pnpm run start
 
 ```bash
 pnpm run build
+```
+
+#### Unit Test
+
+```bash
+pnpm run test
 ```
 
 ### Github Actions
