@@ -30,8 +30,8 @@ const Tabs: React.FC = () => {
     <nav className="pb-12 flex items-center justify-center">
       <ul className="flex w-80 justify-center  gap-10">
         {tabs.map((tab, index) => (
-          <li className="w-1/3">
-            <Tab key={index} tab={tab} />
+          <li key={index} className="w-1/3">
+            <Tab tab={tab} />
           </li>
         ))}
       </ul>
