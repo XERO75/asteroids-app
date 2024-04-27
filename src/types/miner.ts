@@ -1,7 +1,3 @@
-/**
- * { _id: '6602592183f15ad5e26645f9', name: 'Miner 1', planet: '6602592183f15ad5e26645db', x: 274.0273224294391, y: 762.2360830269155, angle: 11, carryCapacity: 2, travelSpeed: 24, miningSpeed: 128, status: 1, minerals: 0, __v: 0, target: '6602592183f15ad5e26645cb', targetType: 'Asteroid' }
- */
-
 export interface Miner {
   _id: string;
   name: string;

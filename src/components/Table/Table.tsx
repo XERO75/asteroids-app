@@ -1,15 +1,13 @@
 import React from 'react';
 import './table.scss';
 
-// 使用泛型 T 来定义数据行的类型
 interface ITableProps<T> {
-  headers: string[]; // 列头标识符数组
-  showHeaders: string[]; // 显示给用户的列头数组
-  data: T[]; // 数据数组，每一项都是类型 T
-  renderCell: (item: T, columnKey: string) => React.ReactNode; // 渲染单元格的函数，接受数据项和列标识符
+  headers: string[];
+  showHeaders: string[];
+  data: T[];
+  renderCell: (item: T, columnKey: string) => React.ReactNode;
 }
 
-// 将 Table 组件也定义为泛型组件
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Table = <T extends Record<string, any>>({ headers, showHeaders, data, renderCell }: ITableProps<T>) => {
   return (

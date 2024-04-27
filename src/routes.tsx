@@ -4,7 +4,7 @@ import AsteroidsPage from './pages/AsteroidsPage/AsteroidsPage';
 import Layout from './pages/Layout/Layout';
 import MinersPage from './pages/MinersPage/MinersPage';
 import NoMatch from './pages/NoMatch';
-import PlanetsPage from './pages/PlanetsPage';
+import PlanetsPage from './pages/PlanetsPage/PlanetsPage';
 
 export enum RoutePaths {
   Home = '/',
