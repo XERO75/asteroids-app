@@ -6,12 +6,19 @@ interface ITableProps<T> {
   showHeaders: string[];
   data: T[];
   renderCell: (item: T, columnKey: string) => React.ReactNode;
+  className?: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Table = <T extends Record<string, any>>({ headers, showHeaders, data, renderCell }: ITableProps<T>) => {
+const Table = <T extends Record<string, any>>({
+  headers,
+  showHeaders,
+  data,
+  renderCell,
+  className,
+}: ITableProps<T>) => {
   return (
-    <div className="max-h-[500px] overflow-y-auto">
+    <div className={`max-h-[500px] overflow-y-auto ${className}`}>
       <table className="w-full">
         <thead>
           <tr>

@@ -13,7 +13,9 @@ const AsteroidsTable: React.FC<IAsteroidsTableProps> = ({ title, showTitle, data
     return <div className="text-gray">{item[columnKey as keyof ShowAsteroidTitle]}</div>;
   };
 
-  return <Table headers={showTitle} showHeaders={title} data={data} renderCell={renderMinerCell} />;
+  return (
+    <Table className="w-[543px]" headers={showTitle} showHeaders={title} data={data} renderCell={renderMinerCell} />
+  );
 };
 
 export default AsteroidsTable;

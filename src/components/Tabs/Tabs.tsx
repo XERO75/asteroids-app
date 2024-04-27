@@ -8,15 +8,15 @@ type TabData = {
 };
 
 const Tab: React.FC<{ tab: TabData }> = ({ tab }) => (
-  <li>
-    <NavLink
-      to={tab.to}
-      className={({ isActive }) => `flex flex-col items-center  ${isActive ? 'text-green-light' : ''}`}
-    >
-      <i className={`iconfont ${tab.iconClass} text-4xl`} />
-      <span className="text-gray">{tab.label}</span>
-    </NavLink>
-  </li>
+  <NavLink
+    to={tab.to}
+    className={({ isActive }) =>
+      `flex flex-col py-2 items-center ${isActive ? 'text-green-light outline outline-gray-light shadow-dark shadow-2xl rounded-lg' : ''}`
+    }
+  >
+    <i className={`iconfont ${tab.iconClass} text-4xl`} />
+    <span className="text-gray">{tab.label}</span>
+  </NavLink>
 );
 
 const Tabs: React.FC = () => {
@@ -27,10 +27,12 @@ const Tabs: React.FC = () => {
   ];
 
   return (
-    <nav className="pb-12">
-      <ul className="flex justify-center gap-8">
+    <nav className="pb-12 flex items-center justify-center">
+      <ul className="flex w-80 justify-center  gap-10">
         {tabs.map((tab, index) => (
-          <Tab key={index} tab={tab} />
+          <li className="w-1/3">
+            <Tab key={index} tab={tab} />
+          </li>
         ))}
       </ul>
     </nav>

@@ -30,7 +30,7 @@ const PlanetsTable: React.FC<IPlanetsTableProps> = ({ title, showTitle, data }) 
 
   return (
     <>
-      <Table headers={showTitle} showHeaders={title} data={data} renderCell={renderMinerCell} />
+      <Table className="w-[543px]" headers={showTitle} showHeaders={title} data={data} renderCell={renderMinerCell} />
       <Modal title={modalTitle} isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
         <span>WIP</span>
       </Modal>
