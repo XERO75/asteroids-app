@@ -1,4 +1,4 @@
-import { Miner } from '../types/types';
+import { Miner } from '../types//miner';
 
 import { requestAPI } from './fetcher';
 

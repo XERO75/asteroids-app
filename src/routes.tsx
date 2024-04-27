@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import AsteroidsPage from './pages/AsteroidsPage';
+import AsteroidsPage from './pages/AsteroidsPage/AsteroidsPage';
 import Layout from './pages/Layout/Layout';
 import MinersPage from './pages/MinersPage/MinersPage';
 import NoMatch from './pages/NoMatch';
