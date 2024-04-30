@@ -14,7 +14,13 @@ const AsteroidsTable: React.FC<IAsteroidsTableProps> = ({ title, showTitle, data
   };
 
   return (
-    <Table className="w-[543px]" headers={showTitle} showHeaders={title} data={data} renderCell={renderMinerCell} />
+    <Table
+      className="w-[543px] max-h-[747px]"
+      headers={showTitle}
+      showHeaders={title}
+      data={data}
+      renderCell={renderMinerCell}
+    />
   );
 };
 
