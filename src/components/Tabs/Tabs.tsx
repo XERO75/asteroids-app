@@ -27,7 +27,7 @@ const Tabs: React.FC = () => {
   ];
 
   return (
-    <nav className="pb-12 flex items-center justify-center">
+    <nav className="pb-12 flex items-center">
       <ul className="flex w-80 justify-center  gap-10">
         {tabs.map((tab, index) => (
           <li key={index} className="w-1/3">

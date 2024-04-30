@@ -9,10 +9,15 @@ const PlanetsPage: React.FC = () => {
 
   useEffect(() => {
     const fetPlanets = async () => {
-      const res = await getPlanetsList();
-      const showData = PlanetController.mergePlanetsValue(res);
-      setPlanets(showData);
-      setLoading(false);
+      try {
+        const res = await getPlanetsList();
+        const showData = PlanetController.mergePlanetsValue(res);
+        setPlanets(showData);
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+      } finally {
+        setLoading(false);
+      }
     };
     fetPlanets();
 

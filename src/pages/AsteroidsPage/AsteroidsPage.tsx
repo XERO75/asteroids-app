@@ -10,11 +10,15 @@ const AsteroidsPage: React.FC = () => {
 
   useEffect(() => {
     const fetAsteroids = async () => {
-      const asteroidsList = await getAsteriodsList();
-      const minersList = await getMinersList();
-      const showData = AsteroidController.mergeAstroidsValue(asteroidsList, minersList);
-      setAsteroids(showData);
-      setLoading(false);
+      try {
+        const [asteroidsList, minersList] = await Promise.all([getAsteriodsList(), getMinersList()]);
+        const showData = AsteroidController.mergeAsteroidsValue(asteroidsList, minersList);
+        setAsteroids(showData);
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+      } finally {
+        setLoading(false);
+      }
     };
     fetAsteroids();
 

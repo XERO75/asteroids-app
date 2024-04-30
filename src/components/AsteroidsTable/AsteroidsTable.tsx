@@ -10,7 +10,12 @@ interface IAsteroidsTableProps {
 
 const AsteroidsTable: React.FC<IAsteroidsTableProps> = ({ title, showTitle, data }) => {
   const renderMinerCell = (item: ShowAsteroid, columnKey: string): React.ReactNode => {
-    return <div className="text-gray">{item[columnKey as keyof ShowAsteroidTitle]}</div>;
+    switch (columnKey) {
+      case 'showMinerals':
+        return <span className={item.minerals === 0 ? 'text-red' : ''}>{item.showMinerals}</span>;
+      default:
+        return <div className="text-gray">{item[columnKey as keyof ShowAsteroidTitle]}</div>;
+    }
   };
 
   return (
