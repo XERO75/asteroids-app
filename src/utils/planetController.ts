@@ -7,15 +7,16 @@ export class PlanetController {
 
   public static mergePlanetsValue(planets: Array<SocketPlanet>) {
     const ret: Array<ShowPlanet> = [];
-    planets.forEach((ast: SocketPlanet) => {
-      const m: ShowPlanet = {
-        ...ast,
-        showName: `P${ast.name.split(' ')[1]}`,
-        showMinerals: `${ast.minerals}/1000`,
-      };
+    planets &&
+      planets.forEach((ast: SocketPlanet) => {
+        const m: ShowPlanet = {
+          ...ast,
+          showName: `P${ast.name.split(' ')[1]}`,
+          showMinerals: `${ast.minerals}/1000`,
+        };
 
-      ret.push(m);
-    });
+        ret.push(m);
+      });
 
     return ret;
   }

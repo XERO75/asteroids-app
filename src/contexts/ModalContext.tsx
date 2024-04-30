@@ -2,7 +2,7 @@ import React, { createContext, ReactNode, useState } from 'react';
 
 interface ModalContextType {
   showModal: (content: ReactNode, title: string) => void;
-  hideModal: () => void;
+  hideModal: () => Promise<void>;
   modalContent: ReactNode;
   modalTitle: string;
   isVisible: boolean;
@@ -21,10 +21,13 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     setIsVisible(true);
   };
 
-  const hideModal = () => {
-    setIsVisible(false);
-    setModalContent(null);
-    setModalTitle('');
+  const hideModal = (): Promise<void> => {
+    return new Promise((resolve) => {
+      setIsVisible(false);
+      setModalContent(null);
+      setModalTitle('');
+      resolve();
+    });
   };
 
   return (

@@ -1,28 +1,25 @@
 import React, { useEffect, useState } from 'react';
+import { getPlanetsList } from '../../api/planets';
 import PlanetsTable from '../../components/PlanetsTable/PlanetsTable';
-import { WS_URL } from '../../config';
-import { useSocket } from '../../hooks/useSocket';
-import type { SocketData } from '../../types//socketData';
 import { ShowPlanet } from '../../types/planet';
 import { PlanetController } from '../../utils/planetController';
-
 const PlanetsPage: React.FC = () => {
-  const { socket } = useSocket(WS_URL);
   const [planets, setPlanets] = useState<ShowPlanet[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const handleTick = (data: SocketData) => {
-      const { planets } = data;
-      const showData = PlanetController.mergePlanetsValue(planets);
+    const fetPlanets = async () => {
+      const res = await getPlanetsList();
+      const showData = PlanetController.mergePlanetsValue(res);
       setPlanets(showData);
       setLoading(false);
     };
+    fetPlanets();
 
-    socket.current?.on('tick', handleTick);
+    const intervalId = setInterval(fetPlanets, 1000);
 
     return () => {
-      socket.current?.off('tick', handleTick);
+      clearInterval(intervalId);
     };
   }, []);
 

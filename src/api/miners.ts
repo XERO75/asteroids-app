@@ -1,4 +1,3 @@
-import { Miner } from '../types//miner';
 import { HTTPMethods, requestAPI } from './fetcher';
 
 export interface MinerData {
@@ -19,7 +18,16 @@ export interface MinerData {
 export const getMinersList = async () => {
   try {
     const res = await requestAPI('/miners');
-    return res as Array<Miner>;
+    return res;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const minersOfPlanet = async (planetID: string) => {
+  try {
+    const res = await requestAPI(`/miners?planetId=${planetID}`);
+    return res;
   } catch (error) {
     console.error(error);
   }

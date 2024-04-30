@@ -15,14 +15,18 @@ export interface Miner {
   targetType: string;
 }
 
-export interface ShowMiner extends Miner {
+interface BaseShowMiner {
   showName?: string;
   showPlanet?: string;
   showCarryCapacity?: string;
   showPosition?: string;
   showStatus?: string;
 }
+export interface ShowMiner extends Miner, BaseShowMiner {}
 
+export interface ShowMinerOfPlanet
+  extends Miner,
+    Pick<BaseShowMiner, 'showName' | 'showCarryCapacity' | 'showPosition' | 'showStatus'> {}
 export function statusToStr(status: number) {
   let ret = `${status}`;
   switch (status) {

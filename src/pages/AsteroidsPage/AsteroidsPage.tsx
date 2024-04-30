@@ -1,28 +1,27 @@
 import React, { useEffect, useState } from 'react';
+import { getAsteriodsList } from '../../api/asteroids';
+import { getMinersList } from '../../api/miners';
 import AsteroidsTable from '../../components/AsteroidsTable/AsteroidsTable';
-import { WS_URL } from '../../config';
-import { useSocket } from '../../hooks/useSocket';
-import type { SocketData } from '../../types//socketData';
 import { ShowAsteroid } from '../../types/asteroid';
 import { AsteroidController } from '../../utils/asteroidController';
-
 const AsteroidsPage: React.FC = () => {
-  const { socket } = useSocket(WS_URL);
   const [asteroids, setAsteroids] = useState<ShowAsteroid[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const handleTick = (data: SocketData) => {
-      const { asteroids, miners } = data;
-      const showData = AsteroidController.mergeAstroidsValue(asteroids, miners);
+    const fetAsteroids = async () => {
+      const asteroidsList = await getAsteriodsList();
+      const minersList = await getMinersList();
+      const showData = AsteroidController.mergeAstroidsValue(asteroidsList, minersList);
       setAsteroids(showData);
       setLoading(false);
     };
+    fetAsteroids();
 
-    socket.current?.on('tick', handleTick);
+    const intervalId = setInterval(fetAsteroids, 1000);
 
     return () => {
-      socket.current?.off('tick', handleTick);
+      clearInterval(intervalId);
     };
   }, []);
 

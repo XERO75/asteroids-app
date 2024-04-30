@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { minersOfPlanet } from '../../api/miners';
 import Modal from '../../components//Modal/Modal';
 import Table from '../../components/Table/Table';
-import { useModal } from '../../hooks/useModal';
+import { ShowMiner, ShowMinerOfPlanet } from '../../types/miner';
 import { ShowPlanet, ShowPlanetTitle } from '../../types/planet';
+import { MinerController } from '../../utils/minerController';
 import CreateMinerForm, { CreateMinerFormProps } from '../CreateMinerForm/CreateMinerForm';
+import './PlanetsTable.scss';
 interface IPlanetsTableProps {
   title: string[];
   showTitle: string[];
@@ -11,8 +14,10 @@ interface IPlanetsTableProps {
 }
 
 const PlanetsTable: React.FC<IPlanetsTableProps> = ({ title, showTitle, data }) => {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const { showModal } = useModal();
+  const [isCreateModalOpen, setCreateModalOpen] = useState(false);
+  const [isSuccessModalOpen, setSuccesslModalOpen] = useState(false);
+  const [isDetailModalOpen, setDetailModalOpen] = useState(false);
+  const [minersList, setMinersList] = useState<ShowMiner[]>([]);
   const [currentPlanet, setCurrentPlanet] = useState<CreateMinerFormProps>({
     planet: {
       id: '',
@@ -22,11 +27,11 @@ const PlanetsTable: React.FC<IPlanetsTableProps> = ({ title, showTitle, data }) 
     },
     minerals: 0,
   });
+  const [detialLoading, setDetailLoding] = useState(false);
   const modalTitle = 'Create a miner';
   const createdText = 'Miner was successfully created';
 
   const handleCreateMiner = (item: ShowPlanet) => {
-    console.log(item);
     const planet = {
       id: item._id,
       name: item.name,
@@ -37,7 +42,17 @@ const PlanetsTable: React.FC<IPlanetsTableProps> = ({ title, showTitle, data }) 
       planet,
       minerals: item.minerals,
     });
-    setModalOpen(true);
+    setCreateModalOpen(true);
+  };
+
+  const onShowMinerDetials = async () => {
+    const { id } = currentPlanet.planet;
+    setDetailModalOpen(true);
+    setDetailLoding(true);
+    const res = await minersOfPlanet(id);
+    const showData = MinerController.mergeMinersOfPlanetValue(res);
+    setMinersList(showData);
+    setDetailLoding(false);
   };
 
   const renderMinerCell = (item: ShowPlanet, columnKey: string): React.ReactNode => {
@@ -64,19 +79,68 @@ const PlanetsTable: React.FC<IPlanetsTableProps> = ({ title, showTitle, data }) 
     }
   };
 
+  const renderMinerOfPlanetCell = (item: ShowMiner, columnKey: string): React.ReactNode => {
+    switch (columnKey) {
+      case 'showCarryCapacity':
+        return (
+          <span className={item.minerals >= item.carryCapacity && item.minerals !== 0 ? 'text-green-dark' : ''}>
+            {item.showCarryCapacity}
+          </span>
+        );
+
+      default:
+        return <div className="text-gray">{item[columnKey as keyof ShowMinerOfPlanet]}</div>;
+    }
+  };
+
   return (
     <>
       <Table className="w-[543px]" headers={showTitle} showHeaders={title} data={data} renderCell={renderMinerCell} />
-      <Modal title={modalTitle} isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
+      <Modal title={modalTitle} isOpen={isCreateModalOpen} onClose={() => setCreateModalOpen(false)}>
         <CreateMinerForm
           planet={currentPlanet.planet}
           minerals={currentPlanet.minerals}
           onCreateSuccess={() => {
-            setModalOpen(false);
-            showModal(<div className="px-12 py-3">{createdText}</div>, '');
+            setCreateModalOpen(false);
+            setSuccesslModalOpen(true);
           }}
         />
       </Modal>
+      <Modal
+        title=""
+        isOpen={isSuccessModalOpen}
+        onClose={() => {
+          setSuccesslModalOpen(false);
+          onShowMinerDetials();
+          setDetailModalOpen(true);
+        }}
+      >
+        <div className="px-12 py-3">{createdText}</div>
+      </Modal>
+      {isDetailModalOpen && (
+        <Modal
+          title={`List of miners of ${`Pl${currentPlanet.planet.name.split(' ')[1]}`}`}
+          isOpen={isDetailModalOpen}
+          onClose={() => {
+            setDetailModalOpen(false);
+            setMinersList([]);
+          }}
+        >
+          {detialLoading && (
+            <div className="flex justify-center items-center w-[500px]">
+              <i className="iconfont icon-loader text-3xl spin"></i>
+            </div>
+          )}
+          {!detialLoading && (
+            <Table
+              headers={MinerController.ShowMinersOfPlanetTitles}
+              showHeaders={MinerController.MinersOfPlanetTitles}
+              data={minersList}
+              renderCell={renderMinerOfPlanetCell}
+            />
+          )}
+        </Modal>
+      )}
     </>
   );
 };
