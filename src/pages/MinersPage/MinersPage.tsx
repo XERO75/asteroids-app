@@ -1,18 +1,18 @@
+import { useAtom } from 'jotai';
 import React, { useEffect, useState } from 'react';
 import { minerHistory } from '../../api/miners';
 import MinerHistoryTable from '../../components/MinerHistoryTable/MinerHistoryTable';
 import MinersTable from '../../components/MinersTable/MinersTable';
 import Modal from '../../components/Modal/Modal';
-import { WS_URL } from '../../config';
-import { useSocket } from '../../hooks/useSocket';
-import type { SocketData } from '../../types//socketData';
+import { socketDataAtom } from '../../states/socketDataAtom';
 import { ShowMiner } from '../../types/miner';
 import { ShowMinerHistory } from '../../types/minerHistory';
 import { MinerController } from '../../utils/minerController';
 import { MinerHistoryController } from '../../utils/minerHistoryController';
+
 const MinersPage: React.FC = () => {
-  const { socket } = useSocket(WS_URL);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [socketData] = useAtom(socketDataAtom);
   const [miners, setMiners] = useState<ShowMiner[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentMiner, setCurrentMiner] = useState({
@@ -22,19 +22,11 @@ const MinersPage: React.FC = () => {
   const [minerHistoryData, setMinerHistory] = useState<ShowMinerHistory[]>([]);
 
   useEffect(() => {
-    const handleTick = (data: SocketData) => {
-      const { miners } = data;
-      const showData = MinerController.mergeMinersValue(miners);
-      setMiners(showData);
-      setLoading(false);
-    };
-
-    socket.current?.on('tick', handleTick);
-
-    return () => {
-      socket.current?.off('tick', handleTick);
-    };
-  }, []);
+    const { miners } = socketData;
+    const showData = MinerController.mergeMinersValue(miners);
+    setMiners(showData);
+    miners.length > 0 && setLoading(false);
+  }, [socketData]);
 
   async function showMinerHistroy(miner: ShowMiner) {
     const { _id: id } = miner;
