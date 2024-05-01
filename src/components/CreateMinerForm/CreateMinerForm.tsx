@@ -78,32 +78,52 @@ export default function CreateMinerForm({ planet, minerals, onCreateSuccess }: C
 
         <h3 className="text-white text-center py-4 text-lg mb-4">Assign points</h3>
         <div className="flex justify-between mb-4 gap-4">
-          <div>
-            <label className="block text-gray mb-2">carryCapacity</label>
+          <div className="flex flex-col w-44">
+            <label className="block text-gray mb-2">Carry Capacity</label>
             <input
-              {...register('carryCapacity', { min: 0, max: totalPoints, valueAsNumber: true })}
+              {...register('carryCapacity', {
+                required: 'Carry capacity is required',
+                min: { value: 1, message: 'Carry capacity must be at least 1' },
+                max: { value: 200, message: 'Carry capacity cannot exceed 200' },
+                valueAsNumber: true,
+              })}
               type="number"
-              defaultValue={0}
+              defaultValue={1}
               className="p-2 rounded bg-gray-light text-white"
             />
+            {errors.carryCapacity && <span className="text-red">{errors.carryCapacity.message}</span>}
           </div>
-          <div>
-            <label className="block text-gray mb-2">travelSpeed</label>
+
+          <div className="flex flex-col w-44">
+            <label className="block text-gray mb-2">Travel Speed</label>
             <input
-              {...register('travelSpeed', { min: 0, max: totalPoints, valueAsNumber: true })}
+              {...register('travelSpeed', {
+                required: 'Travel speed is required',
+                min: { value: 1, message: 'Travel speed must be at least 1' },
+                max: { value: 200, message: 'Travel speed cannot exceed 200' },
+                valueAsNumber: true,
+              })}
               type="number"
-              defaultValue={0}
+              defaultValue={1}
               className="p-2 rounded bg-gray-light text-white"
             />
+            {errors.travelSpeed && <span className="text-red">{errors.travelSpeed.message}</span>}
           </div>
-          <div>
-            <label className="block text-gray mb-2">miningSpeed</label>
+
+          <div className="flex flex-col w-44">
+            <label className="block text-gray mb-2">Mining Speed</label>
             <input
-              {...register('miningSpeed', { min: 0, max: totalPoints, valueAsNumber: true })}
+              {...register('miningSpeed', {
+                required: 'Mining speed is required',
+                min: { value: 1, message: 'Mining speed must be at least 1' },
+                max: { value: 200, message: 'Mining speed cannot exceed 200' },
+                valueAsNumber: true,
+              })}
               type="number"
-              defaultValue={0}
+              defaultValue={1}
               className="p-2 rounded bg-gray-light text-white"
             />
+            {errors.miningSpeed && <span className="text-red">{errors.miningSpeed.message}</span>}
           </div>
         </div>
 

@@ -13,7 +13,7 @@ export class AsteroidController {
           ...ast,
           showName: `Ast${ast.name.split(' ')[1]}`,
           showMinerals: `${ast.minerals}`,
-          showCurrentMiner: ast.currentMiner ? this.getMinerName(ast.currentMiner, miners) : '0',
+          showCurrentMiner: ast.currentMiner ? this.getMinerName(ast.currentMiner._id, miners) : '0',
           showPosition: `${Math.floor(ast.position.x)},${Math.floor(ast.position.y)}`,
         };
 

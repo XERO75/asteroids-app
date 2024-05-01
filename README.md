@@ -16,7 +16,7 @@ A React app created with [Create React App](https://github.com/facebook/create-r
 
 ## Installation
 
-make sure you have [pnpm](https://pnpm.io/) installed, and node.js v18.16.0 or higher on
+make sure you have [pnpm](https://pnpm.io/) installed, and node.js v18.16.0 or higher on your machine.
 
 ```bash
 pnpm install

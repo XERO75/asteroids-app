@@ -15,7 +15,7 @@ export interface SocketAsteroid {
   name: string;
   minerals: number;
   status: number;
-  currentMiner: string;
+  currentMiner: SocketMiner | null;
   __v: number;
 }
 

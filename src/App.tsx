@@ -13,7 +13,8 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const handleTick = (data: SocketData) => {
-      setWsData(data);
+      const { miners, asteroids, planets } = data;
+      setWsData({ miners, asteroids, planets });
     };
 
     socket.current?.on('tick', handleTick);
