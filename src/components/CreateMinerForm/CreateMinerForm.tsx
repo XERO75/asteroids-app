@@ -81,7 +81,7 @@ export default function CreateMinerForm({ planet, minerals, onCreateSuccess }: C
           <div>
             <label className="block text-gray mb-2">carryCapacity</label>
             <input
-              {...register('carryCapacity', { min: 0, max: totalPoints })}
+              {...register('carryCapacity', { min: 0, max: totalPoints, valueAsNumber: true })}
               type="number"
               defaultValue={0}
               className="p-2 rounded bg-gray-light text-white"
@@ -90,7 +90,7 @@ export default function CreateMinerForm({ planet, minerals, onCreateSuccess }: C
           <div>
             <label className="block text-gray mb-2">travelSpeed</label>
             <input
-              {...register('travelSpeed', { min: 0, max: totalPoints })}
+              {...register('travelSpeed', { min: 0, max: totalPoints, valueAsNumber: true })}
               type="number"
               defaultValue={0}
               className="p-2 rounded bg-gray-light text-white"
@@ -99,7 +99,7 @@ export default function CreateMinerForm({ planet, minerals, onCreateSuccess }: C
           <div>
             <label className="block text-gray mb-2">miningSpeed</label>
             <input
-              {...register('miningSpeed', { min: 0, max: totalPoints })}
+              {...register('miningSpeed', { min: 0, max: totalPoints, valueAsNumber: true })}
               type="number"
               defaultValue={0}
               className="p-2 rounded bg-gray-light text-white"

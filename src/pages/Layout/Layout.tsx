@@ -34,7 +34,7 @@ const Layout: React.FC = () => {
 
   return (
     <div className="flex">
-      <div className="min-w-[560px] mx-4">
+      <div className="w-[560px] mx-4">
         <Header />
         <Tabs />
         <div className="border-b border-gray-light" />
